@@ -1,42 +1,39 @@
 package com.educaweb.course.entities;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Repository
-@Component
 @Entity
-@Table(name = "tb_user")
-public class Category implements Serializable {
-
+@Table(name = "tb_category")
+public class Category  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String name;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String name;
 
-    public Category(){
+  @JsonIgnore
 
-    }
 
-    public Category(long id, String name) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public long getId() {
-        return id;
+    public Category() {
 
+  }
+
+    public Long getId() {
+        return id;
     }
 
-
-
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,7 +49,7 @@ public class Category implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Category category)) return false;
-        return getId() == category.getId();
+        return Objects.equals(getId(), category.getId());
     }
 
     @Override
