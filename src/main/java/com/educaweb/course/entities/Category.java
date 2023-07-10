@@ -1,11 +1,17 @@
 package com.educaweb.course.entities;
 
 
+import com.educaweb.course.OrderItem;
+import com.educaweb.course.entities.enums.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_category")
@@ -18,6 +24,12 @@ public class Category  implements Serializable {
   private String name;
 
   @JsonIgnore
+  @ManyToMany (mappedBy = "categories")
+  private Set<Product> products = new HashSet<>();
+
+
+
+    @JsonIgnore
 
 
     public Category(Long id, String name) {
@@ -43,6 +55,10 @@ public class Category  implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    @Transient
+    public Set<Product> getProducts() {
+        return products;
     }
 
     @Override

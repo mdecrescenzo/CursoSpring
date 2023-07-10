@@ -1,5 +1,6 @@
 
 package com.educaweb.course.repositories;
+import com.educaweb.course.entities.Category;
 import com.educaweb.course.entities.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
